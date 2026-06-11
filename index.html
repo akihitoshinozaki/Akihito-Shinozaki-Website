@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akihito Shinozaki — CS & Data Science, University of Minnesota</title>
+  <meta name="description" content="Akihito Shinozaki is a Computer Science and Data Science student at the University of Minnesota building AI systems for healthcare — from mmWave fall detection to medical imaging ML." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23C73E2E'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23F6F6F2' font-family='serif'>明</text></svg>" />
+</head>
+<body>
+
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <header class="topbar">
+    <a class="wordmark" href="#top">A.&nbsp;Shinozaki</a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="#about" data-nav="about">About</a>
+      <a href="#experience" data-nav="experience">Experience</a>
+      <a href="#projects" data-nav="projects">Projects</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <canvas id="radar" class="hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="hero-text">
+        <p class="eyebrow mono load-seq">Minneapolis, MN · Tokyo, JP</p>
+        <h1 class="load-seq">Akihito<br />Shinozaki</h1>
+        <p class="hero-type mono load-seq" aria-label="Machine learning for healthcare">
+          <span id="typewriter">machine learning for healthcare</span><span class="caret" aria-hidden="true"></span>
+        </p>
+        <p class="hero-lede load-seq">
+          Computer Science &amp; Data Science student at the University of Minnesota,
+          building AI systems for healthcare — from radar-based fall detection for
+          older adults to machine learning for medical imaging.
+        </p>
+        <div class="hero-actions load-seq">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="hero-side load-seq">
+        <figure class="portrait">
+          <img src="assets/headshot.jpg" alt="Portrait of Akihito Shinozaki" width="800" height="1000" />
+        </figure>
+        <div class="hero-kanji" aria-hidden="true">
+          <span class="tategaki">篠崎明仁</span>
+          <span class="seal">明仁</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="section-marker" aria-hidden="true"><span class="tategaki">紹介</span></div>
+      <div class="section-body">
+        <h2>About</h2>
+        <p class="stagger">
+          I'm a Computer Science and Data Science student at the University of
+          Minnesota working at the intersection of machine learning and medicine.
+          As an undergraduate research assistant at the Earl E. Bakken Medical
+          Devices Center, I'm helping build a real-time fall detection system that
+          uses mmWave radar instead of cameras — designing the data pipeline that
+          turns raw sensor streams into ML-ready inputs, and contributing to
+          infrastructure decisions across the hardware and software stack.
+        </p>
+        <p class="stagger">
+          Having grown up across Tokyo, London, and New York, I approach healthcare
+          technology as a global problem. The challenge that drives my work: aging
+          populations are outpacing physician supply worldwide, with Japan as the
+          sharpest case. I'm building toward AI diagnostic and monitoring tools for
+          that future — and Minnesota's medical device ecosystem is where I'm
+          learning how clinical technology actually gets built, validated, and
+          shipped.
+        </p>
+        <p class="stagger">
+          I work fluently in Japanese and English.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience">
+      <div class="section-marker" aria-hidden="true"><span class="tategaki">経歴</span></div>
+      <div class="section-body">
+        <h2>Experience</h2>
+
+        <article class="entry stagger">
+          <p class="entry-date mono">Mar 2026 — Present</p>
+          <div class="entry-main">
+            <h3>Undergraduate Research Assistant</h3>
+            <p class="entry-org">Earl E. Bakken Medical Devices Center, University of Minnesota</p>
+            <p>
+              Contributing to a real-time fall detection system for older adults.
+              I build and optimize the data pipeline that turns mmWave radar sensor
+              streams into inputs for ML-based detection, and help shape
+              infrastructure decisions around data storage and cloud deployment —
+              working across both the hardware and software layers of an active
+              research project.
+            </p>
+          </div>
+        </article>
+
+        <article class="entry stagger">
+          <p class="entry-date mono">May — Jun 2025</p>
+          <div class="entry-main">
+            <h3>Software Intern</h3>
+            <p class="entry-org">Miracom</p>
+            <p>
+              Engineered an ESP32-based local web server for remote control and
+              automation of lighting devices, with a lightweight HTML/CSS interface
+              hosted directly on the microcontroller and low-latency hardware
+              control over HTTP.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+      <div class="section-marker" aria-hidden="true"><span class="tategaki">制作</span></div>
+      <div class="section-body">
+        <h2>Projects</h2>
+
+        <div class="project-grid">
+          <article class="card stagger">
+            <h3>Hivemind</h3>
+            <p class="card-sub mono">LangGraph · DoWhy · Pydantic · FastAPI · Docker</p>
+            <p>
+              A multi-agent causal reasoning engine that ingests incident data and
+              produces causal estimates. Agents are orchestrated with LangGraph and
+              exchange structured I/O via Pydantic; estimation is evidence-gated
+              with DoWhy, so the system withholds conclusions when supporting data
+              is insufficient.
+            </p>
+          </article>
+
+          <article class="card stagger">
+            <h3>Pneumonia Detection Model</h3>
+            <p class="card-sub mono">PyTorch · CNN · Medical imaging</p>
+            <p>
+              A convolutional neural network that detects pneumonia from chest
+              X-rays, trained and validated on the Kaggle Chest X-Ray dataset with
+              rotation and scaling augmentation to reduce overfitting and improve
+              generalization.
+            </p>
+          </article>
+
+          <article class="card stagger">
+            <h3>Medical Vocabulary Flashcards</h3>
+            <p class="card-sub mono">Spaced repetition · LLM-generated definitions</p>
+            <p>
+              A deployed flashcard app for learning medical terminology, with
+              spaced-repetition scheduling and AI-generated definitions.
+            </p>
+            <a class="card-link" href="https://akihitoshinozaki.github.io/Flashcard-/" target="_blank" rel="noopener">Try it live →</a>
+          </article>
+
+          <article class="card stagger">
+            <h3>GopherGPT</h3>
+            <p class="card-sub mono">AI Club at UMN · Agent Logic team · RAG</p>
+            <p>
+              A university-specific LLM agent built with the Agent Logic team,
+              using retrieval-augmented generation to ground responses in
+              University of Minnesota data for accurate, real-time student
+              assistance.
+            </p>
+          </article>
+
+          <article class="card stagger">
+            <h3>Gyroscope-Based Fitness Tracker</h3>
+            <p class="card-sub mono">Python · Signal processing · ML</p>
+            <p>
+              Python pipelines that process and visualize accelerometer and
+              gyroscope data from barbell exercises, with a machine learning model
+              that classifies exercises and counts repetitions from motion
+              signatures.
+            </p>
+          </article>
+        </div>
+
+        <p class="more-link stagger">
+          More on <a href="https://github.com/akihitoshinozaki" target="_blank" rel="noopener">GitHub</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION & SKILLS ============ -->
+    <section class="section" id="education">
+      <div class="section-marker" aria-hidden="true"><span class="tategaki">学歴</span></div>
+      <div class="section-body">
+        <h2>Education &amp; Skills</h2>
+
+        <article class="entry stagger">
+          <p class="entry-date mono">Expected May 2029</p>
+          <div class="entry-main">
+            <h3>University of Minnesota — Twin Cities</h3>
+            <p class="entry-org">B.S. Computer Science &amp; B.S. Data Science</p>
+            <p>
+              Coursework includes algorithms &amp; data structures, discrete
+              structures, and linear algebra &amp; differential equations.
+              Recipient of the JAA Ambassador Shinichi Nishimiya Scholarship.
+            </p>
+          </div>
+        </article>
+
+        <div class="skills">
+          <div class="skill-row stagger">
+            <p class="skill-label mono">Languages &amp; tools</p>
+            <p>Python (PyTorch, Pandas, NumPy) · Java · C++ · JavaScript · Git</p>
+          </div>
+          <div class="skill-row stagger">
+            <p class="skill-label mono">Hardware &amp; systems</p>
+            <p>ESP32 · Arduino · mmWave radar pipelines · Docker · FastAPI</p>
+          </div>
+          <div class="skill-row stagger">
+            <p class="skill-label mono">Spoken languages</p>
+            <p>Japanese (native) · English (fluent)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="section-marker" aria-hidden="true"><span class="tategaki">連絡</span></div>
+      <div class="section-body">
+        <h2>Contact</h2>
+        <p class="stagger">
+          I'm always glad to talk about medical AI, research, or internship
+          opportunities.
+        </p>
+        <ul class="contact-list">
+          <li class="stagger"><span class="mono">Email</span><a href="mailto:akihitoshinoz@gmail.com">akihitoshinoz@gmail.com</a></li>
+          <li class="stagger"><span class="mono">LinkedIn</span><a href="https://www.linkedin.com/in/akihito-shinozaki-631804336" target="_blank" rel="noopener">akihito-shinozaki</a></li>
+          <li class="stagger"><span class="mono">GitHub</span><a href="https://github.com/akihitoshinozaki" target="_blank" rel="noopener">akihitoshinozaki</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Akihito Shinozaki <span class="footer-kanji" aria-hidden="true">篠崎明仁</span></p>
+    <a class="back-top mono" href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
