@@ -1,260 +1,1273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akihito Shinozaki — Computer Science, University of Minnesota</title>
-  <meta name="description" content="Akihito Shinozaki is a Computer Science student at the University of Minnesota building AI systems for healthcare — from mmWave fall detection to medical imaging ML." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23C73E2E'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23F6F6F2' font-family='serif'>暁</text></svg>" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Akihito Shinozaki | Robotics &amp; Healthcare AI</title>
+  <meta name="description" content="Akihito Shinozaki — computer science student at the University of Minnesota, exploring robotics, computer vision, and healthcare technology.">
+
+  <!-- Requests exclusion from search results. This is NOT access control.
+       Keep this tag for selective sharing; remove it to allow indexing.
+       A public hosting repository can still be found separately. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#f7f7f2">
+
+  <style>
+    :root {
+      --bg: #f7f7f2;
+      --paper: #fff;
+      --ink: #202e29;
+      --muted: #58645d;
+      --line: #dce1d8;
+      --green: #26634f;
+      --dark: #203d32;
+      --lime: #d5eeac;
+      --soft: #edf1e9;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-underline-offset: 4px;
+    }
+
+    a:hover { text-decoration-thickness: 2px; }
+
+    :focus-visible {
+      outline: 3px solid #b26410;
+      outline-offset: 5px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1, h2, h3 { line-height: 1.12; }
+
+    ::selection {
+      background: var(--lime);
+      color: var(--ink);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .skip {
+      position: absolute;
+      top: -90px;
+      left: 16px;
+      z-index: 10;
+      padding: 12px 18px;
+      background: var(--paper);
+      border: 1px solid var(--ink);
+    }
+
+    .skip:focus { top: 12px; }
+
+    .site-header {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .monogram {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: 50%;
+      font-size: 13px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+      text-decoration: underline;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      align-items: center;
+      gap: 64px;
+      padding-block: 76px 64px;
+    }
+
+    .hero > div > .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: clamp(46px, 5.5vw, 76px);
+      letter-spacing: -.06em;
+      margin-block: 22px;
+      font-weight: 750;
+    }
+
+    h1 span { color: var(--green); }
+
+    .intro {
+      font-size: 17px;
+      max-width: 490px;
+      color: var(--muted);
+    }
+
+    .intro strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      min-height: 48px;
+      padding: 11px 20px;
+      border-radius: 8px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .button:hover {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    .button.secondary:hover {
+      background: var(--soft);
+      border-color: var(--muted);
+    }
+
+    .focus-panel {
+      background: var(--dark);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--lime);
+    }
+
+    .panel-top span:last-child { opacity: .8; }
+
+    .focus-panel h2 {
+      font-size: 27px;
+      letter-spacing: -.035em;
+      margin: 28px 0;
+      max-width: 250px;
+    }
+
+    .system-step {
+      display: grid;
+      grid-template-columns: 36px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 18px 0;
+      border-top: 1px solid #476052;
+    }
+
+    .step-num {
+      font: 12px ui-monospace, monospace;
+      color: var(--lime);
+    }
+
+    .system-step strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .system-step small {
+      display: block;
+      color: #c4d2c8;
+      font-size: 12px;
+    }
+
+    .step-mark {
+      color: var(--lime);
+      font-size: 24px;
+    }
+
+    .panel-foot {
+      border-top: 1px solid #476052;
+      padding-top: 18px;
+      margin-top: 2px;
+      color: #c4d2c8;
+      font-size: 11px;
+      letter-spacing: .03em;
+    }
+
+    .context-strip {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr;
+      gap: 24px;
+      border-block: 1px solid var(--line);
+      padding-block: 24px;
+    }
+
+    .context-strip .eyebrow {
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .context-strip p:last-child {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .section { padding-block: 76px; }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+
+    .section-heading .eyebrow {
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(29px, 3.2vw, 40px);
+      letter-spacing: -.045em;
+    }
+
+    .section-note {
+      max-width: 300px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .project {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .project-visual {
+      min-height: 155px;
+      padding: 24px;
+      background: var(--soft);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .visual-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-number {
+      font: 12px ui-monospace, monospace;
+      color: var(--muted);
+    }
+
+    .status {
+      font-size: 10px;
+      font-weight: 650;
+      padding: 4px 9px;
+      border: 1px solid #becaba;
+      border-radius: 30px;
+      color: #3f5547;
+    }
+
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+      margin: 24px 0 9px;
+      font: 11px ui-monospace, monospace;
+    }
+
+    .flow span:not(.arrow) {
+      background: #fff;
+      border: 1px solid #d3dccf;
+      padding: 6px 7px;
+      border-radius: 5px;
+    }
+
+    .flow .arrow { color: var(--green); }
+
+    .visual-caption {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .project-body { padding: 24px; }
+
+    .project-type {
+      font-size: 11px;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 23px;
+      letter-spacing: -.035em;
+    }
+
+    .project-description {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      font-size: 10px;
+      background: var(--soft);
+      color: #425448;
+      border-radius: 5px;
+      padding: 4px 8px;
+    }
+
+    details {
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+      padding-top: 15px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 650;
+      padding-block: 5px;
+    }
+
+    summary::marker { color: var(--green); }
+
+    details p {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    details strong { color: var(--ink); }
+
+    .experience-section {
+      border-top: 1px solid var(--line);
+    }
+
+    .experience {
+      display: grid;
+      grid-template-columns: 215px 1fr;
+      gap: 44px;
+      padding-block: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .experience-meta {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .experience-meta strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .experience h3 { font-size: 22px; }
+
+    .organization {
+      color: var(--green);
+      font-size: 14px;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .experience-description {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 720px;
+      margin-top: 14px;
+    }
+
+    .about-section { padding-top: 0; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      padding-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+
+    .about-grid .eyebrow {
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .about-copy {
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    .education {
+      border-left: 3px solid var(--green);
+      padding-left: 18px;
+      margin-top: 26px;
+    }
+
+    .education strong { font-size: 15px; }
+
+    .education p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .toolbox h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .tool-row {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 16px;
+      padding-block: 13px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .tool-row dt { font-weight: 600; }
+
+    .tool-row dd {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .leadership {
+      padding: 18px;
+      border-radius: 10px;
+      background: var(--soft);
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .leadership strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 40px;
+      background: var(--dark);
+      color: #fff;
+      border-radius: var(--radius);
+    }
+
+    .contact .eyebrow {
+      color: var(--lime);
+      margin-bottom: 12px;
+    }
+
+    .contact h2 {
+      font-size: clamp(28px, 3vw, 38px);
+    }
+
+    .contact p:not(.eyebrow) {
+      color: #c4d2c8;
+      font-size: 14px;
+      margin-top: 12px;
+      max-width: 480px;
+    }
+
+    .contact-link {
+      color: var(--lime);
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      padding-block: 28px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    footer a { text-decoration: none; }
+
+    @media (max-width: 980px) {
+      .hero { gap: 30px; }
+      .focus-panel { padding: 24px; }
+      .project-grid { grid-template-columns: 1fr; }
+
+      .project {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+      }
+
+      .project-visual {
+        border-bottom: 0;
+        border-right: 1px solid var(--line);
+      }
+
+      .flow {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 7px;
+      }
+
+      .about-grid { gap: 32px; }
+
+      .contact {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .wrap { width: calc(100% - 36px); }
+
+      .nav {
+        padding-block: 18px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .brand { font-size: 13px; }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .nav-links a { font-size: 13px; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-block: 42px;
+        gap: 36px;
+      }
+
+      h1 { font-size: clamp(44px, 11vw, 66px); }
+      .intro { font-size: 16px; }
+      .focus-panel h2 { max-width: none; }
+
+      .context-strip {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .section { padding-block: 48px; }
+
+      .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .section-note { max-width: none; }
+      .project { display: block; }
+
+      .project-visual {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .flow {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 4px;
+      }
+
+      .flow span:not(.arrow) { padding: 6px; }
+
+      .experience {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .about-section { padding-top: 0; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .tool-row { grid-template-columns: 100px 1fr; }
+      .contact { padding: 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        font-size: 11pt;
+      }
+
+      .wrap { width: 100%; }
+
+      .site-header,
+      .actions,
+      .focus-panel,
+      .project-visual,
+      footer {
+        display: none;
+      }
+
+      .hero, .section { padding-block: 20px; }
+
+      .hero,
+      .project-grid,
+      .project,
+      .about-grid {
+        display: block;
+      }
+
+      h1 { font-size: 34pt; }
+      h2 { font-size: 22pt; }
+
+      .project {
+        margin-bottom: 12px;
+        break-inside: avoid;
+      }
+
+      .experience { break-inside: avoid; }
+
+      .contact {
+        background: #fff;
+        color: #202e29;
+        border: 1px solid #ccc;
+        padding: 20px;
+      }
+
+      .contact .eyebrow,
+      .contact p:not(.eyebrow),
+      .contact-link {
+        color: #202e29;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a
+        class="brand"
+        href="#main"
+        aria-label="Akihito Shinozaki, home"
+      >
+        <span class="monogram" aria-hidden="true">AS</span>
+        AKIHITO SHINOZAKI
+      </a>
 
-  <header class="topbar">
-    <a class="wordmark" href="#top">A.&nbsp;Shinozaki</a>
-    <nav class="topnav" aria-label="Primary">
-      <a href="#about" data-nav="about">About</a>
-      <a href="#experience" data-nav="experience">Experience</a>
-      <a href="#projects" data-nav="projects">Projects</a>
-      <a href="#contact" data-nav="contact">Contact</a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
+        <a href="#contact">
+          Contact <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </nav>
   </header>
 
-  <main id="top">
+  <main id="main" class="wrap">
 
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <canvas id="radar" class="hero-canvas" aria-hidden="true"></canvas>
+    <!-- INTRODUCTION -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          Robotics · Computer vision · Healthcare AI
+        </p>
 
-      <div class="hero-text">
-        <p class="eyebrow mono load-seq">Minneapolis, MN · Tokyo, JP</p>
-        <h1 class="load-seq">Akihito<br />Shinozaki</h1>
-        <p class="hero-type mono load-seq" aria-label="Machine learning for healthcare">
-          <span id="typewriter">machine learning for healthcare</span><span class="caret" aria-hidden="true"></span>
+        <h1 id="hero-title">
+          Software for<br>
+          the <span>physical<br>world.</span>
+        </h1>
+
+        <p class="intro">
+          I'm <strong>Akihito Shinozaki</strong>, a computer science
+          student at the University of Minnesota. I'm interested
+          in connecting perception, control, and software to build
+          useful healthcare and robotic systems.
         </p>
-        <p class="hero-lede load-seq">
-          Computer Science student at the University of Minnesota,
-          building AI systems for healthcare — from radar-based fall detection for
-          older adults to machine learning for medical imaging.
-        </p>
-        <div class="hero-actions load-seq">
-          <a class="btn btn-primary" href="#projects">View projects</a>
-          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+
+        <div class="actions">
+          <a class="button" href="#work">
+            Explore my work <span aria-hidden="true">↘</span>
+          </a>
+          <a class="button secondary" href="#contact">
+            Get in touch <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </div>
 
-      <div class="hero-side load-seq">
-        <figure class="portrait">
-          <img src="assets/headshot.jpg" alt="Portrait of Akihito Shinozaki" width="800" height="1000" />
-        </figure>
-        <div class="hero-kanji" aria-hidden="true">
-          <span class="tategaki">篠崎暁人</span>
-          <span class="seal">暁人</span>
+      <aside
+        class="focus-panel"
+        aria-label="Engineering areas of interest"
+      >
+        <div class="panel-top eyebrow">
+          <span>Areas of interest</span>
+          <span aria-hidden="true">[ AS / 01 ]</span>
         </div>
-      </div>
+
+        <h2>Connecting the pieces of a system.</h2>
+
+        <div class="system-step">
+          <span class="step-num" aria-hidden="true">01</span>
+          <div>
+            <strong>Sense</strong>
+            <small>Computer vision &amp; sensor signals</small>
+          </div>
+          <span class="step-mark" aria-hidden="true">◎</span>
+        </div>
+
+        <div class="system-step">
+          <span class="step-num" aria-hidden="true">02</span>
+          <div>
+            <strong>Understand</strong>
+            <small>Models, tracking &amp; optimization</small>
+          </div>
+          <span class="step-mark" aria-hidden="true">◇</span>
+        </div>
+
+        <div class="system-step">
+          <span class="step-num" aria-hidden="true">03</span>
+          <div>
+            <strong>Act</strong>
+            <small>Embedded software &amp; feedback control</small>
+          </div>
+          <span class="step-mark" aria-hidden="true">↗</span>
+        </div>
+
+        <p class="panel-foot">
+          PERCEPTION → SOFTWARE → PHYSICAL SYSTEMS
+        </p>
+      </aside>
     </section>
 
-    <!-- ============ ABOUT ============ -->
-    <section class="section" id="about">
-      <div class="section-marker" aria-hidden="true"><span class="tategaki">紹介</span></div>
-      <div class="section-body">
-        <h2>About</h2>
-        <p class="stagger">
-          I'm a Computer Science student at the University of
-          Minnesota working at the intersection of machine learning and medicine.
-          As an undergraduate research assistant at the Earl E. Bakken Medical
-          Devices Center, I'm helping build a real-time fall detection system that
-          uses mmWave radar instead of cameras — designing the data pipeline that
-          turns raw sensor streams into ML-ready inputs, and contributing to
-          infrastructure decisions across the hardware and software stack.
-        </p>
-        <p class="stagger">
-          Having grown up across Tokyo, London, and New York, I approach healthcare
-          technology as a global problem. The challenge that drives my work: aging
-          populations are outpacing physician supply worldwide, with Japan as the
-          sharpest case. I'm building toward AI diagnostic and monitoring tools for
-          that future — and Minnesota's medical device ecosystem is where I'm
-          learning how clinical technology actually gets built, validated, and
-          shipped.
-        </p>
-        <p class="stagger">
-          I work fluently in Japanese and English.
+    <!-- AT A GLANCE -->
+    <div class="context-strip" aria-label="At a glance">
+      <div>
+        <p class="eyebrow">Education</p>
+        <p>University of Minnesota, Twin Cities</p>
+      </div>
+      <div>
+        <p class="eyebrow">Graduation</p>
+        <p>Computer Science · Class of 2029</p>
+      </div>
+      <div>
+        <p class="eyebrow">Engineering focus</p>
+        <p>Robotics &amp; systems integration</p>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <section
+      id="work"
+      class="section"
+      aria-labelledby="work-title"
+    >
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / Selected work</p>
+          <h2 id="work-title">From signals to systems.</h2>
+        </div>
+        <p class="section-note">
+          Personal projects, team contributions, and research
+          at the intersection of software and hardware.
         </p>
       </div>
-    </section>
 
-    <!-- ============ EXPERIENCE ============ -->
-    <section class="section" id="experience">
-      <div class="section-marker" aria-hidden="true"><span class="tategaki">経歴</span></div>
-      <div class="section-body">
-        <h2>Experience</h2>
+      <div class="project-grid">
 
-        <article class="entry stagger">
-          <p class="entry-date mono">Mar 2026 — Present</p>
-          <div class="entry-main">
-            <h3>Undergraduate Research Assistant</h3>
-            <p class="entry-org">Earl E. Bakken Medical Devices Center, University of Minnesota</p>
-            <p>
-              Contributing to a real-time fall detection system for older adults.
-              I build and optimize the data pipeline that turns mmWave radar sensor
-              streams into inputs for ML-based detection, and help shape
-              infrastructure decisions around data storage and cloud deployment —
-              working across both the hardware and software layers of an active
-              research project.
+        <!-- PROJECT 1 -->
+        <article class="project">
+          <div class="project-visual">
+            <div class="visual-top">
+              <span class="project-number">PROJECT / 01</span>
+              <span class="status">In progress</span>
+            </div>
+
+            <div
+              class="flow"
+              aria-label="Video to detection to tracking"
+            >
+              <span>Video</span>
+              <span class="arrow" aria-hidden="true">→</span>
+              <span>Detect</span>
+              <span class="arrow" aria-hidden="true">→</span>
+              <span>Track</span>
+            </div>
+
+            <p class="visual-caption">
+              Pipeline under development
             </p>
+          </div>
+
+          <div class="project-body">
+            <p class="project-type">
+              Personal project · Computer vision
+            </p>
+
+            <h3>Surgical instrument tracking</h3>
+
+            <p class="project-description">
+              Developing a laparoscopic-video pipeline that
+              combines instrument detection, multi-object
+              tracking, and live visualization.
+            </p>
+
+            <div class="tags" aria-label="Technologies">
+              <span class="tag">Python</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">YOLO</span>
+              <span class="tag">ByteTrack</span>
+            </div>
+
+            <details>
+              <summary>Engineering notes</summary>
+              <p>
+                <strong>Goal.</strong>
+                Follow instrument identities across video frames,
+                rather than detect objects in isolation.
+              </p>
+              <p>
+                <strong>Current work.</strong>
+                Integrate detection, tracking, and visualization
+                into one processing pipeline.
+              </p>
+              <p>
+                <strong>Evaluation focus.</strong>
+                Tracking accuracy, processing speed, and
+                end-to-end latency. Benchmarks are not yet published.
+              </p>
+            </details>
+
+            <!-- Add a real demo or repository link here when ready. -->
           </div>
         </article>
 
-        <article class="entry stagger">
-          <p class="entry-date mono">May — Jun 2025</p>
-          <div class="entry-main">
-            <h3>Software Intern</h3>
-            <p class="entry-org">Miracom</p>
-            <p>
-              Engineered an ESP32-based local web server for remote control and
-              automation of lighting devices, with a lightweight HTML/CSS interface
-              hosted directly on the microcontroller and low-latency hardware
-              control over HTTP.
+        <!-- PROJECT 2 -->
+        <article class="project">
+          <div class="project-visual">
+            <div class="visual-top">
+              <span class="project-number">PROJECT / 02</span>
+              <span class="status">In progress</span>
+            </div>
+
+            <div
+              class="flow"
+              aria-label="Encoder feedback to PID controller to motor"
+            >
+              <span>Encoder</span>
+              <span class="arrow" aria-hidden="true">→</span>
+              <span>PID</span>
+              <span class="arrow" aria-hidden="true">→</span>
+              <span>Motor</span>
+            </div>
+
+            <p class="visual-caption">
+              Feedback-control concept
             </p>
           </div>
-        </article>
-      </div>
-    </section>
 
-    <!-- ============ PROJECTS ============ -->
-    <section class="section" id="projects">
-      <div class="section-marker" aria-hidden="true"><span class="tategaki">制作</span></div>
-      <div class="section-body">
-        <h2>Projects</h2>
-
-        <div class="project-grid">
-          <article class="card stagger">
-            <h3>Hivemind</h3>
-            <p class="card-sub mono">LangGraph · DoWhy · Pydantic · FastAPI · Docker</p>
-            <p>
-              A multi-agent causal reasoning engine that ingests incident data and
-              produces causal estimates. Agents are orchestrated with LangGraph and
-              exchange structured I/O via Pydantic; estimation is evidence-gated
-              with DoWhy, so the system withholds conclusions when supporting data
-              is insufficient.
+          <div class="project-body">
+            <p class="project-type">
+              Northstar Advanced Robotics · Controls team
             </p>
-          </article>
 
-          <article class="card stagger">
-            <h3>Pneumonia Detection Model</h3>
-            <p class="card-sub mono">PyTorch · CNN · Medical imaging</p>
-            <p>
-              A convolutional neural network that detects pneumonia from chest
-              X-rays, trained and validated on the Kaggle Chest X-Ray dataset with
-              rotation and scaling augmentation to reduce overfitting and improve
-              generalization.
+            <h3>Motor velocity control</h3>
+
+            <p class="project-description">
+              Developing embedded C++ motor-control software
+              using encoder feedback and PID control within
+              the Taproot framework.
             </p>
-          </article>
 
-          <article class="card stagger">
-            <h3>Medical Vocabulary Flashcards</h3>
-            <p class="card-sub mono">Spaced repetition · LLM-generated definitions</p>
-            <p>
-              A deployed flashcard app for learning medical terminology, with
-              spaced-repetition scheduling and AI-generated definitions.
-            </p>
-            <a class="card-link" href="https://akihitoshinozaki.github.io/Flashcard-/" target="_blank" rel="noopener">Try it live →</a>
-          </article>
+            <div class="tags" aria-label="Technologies">
+              <span class="tag">C++17</span>
+              <span class="tag">Taproot</span>
+              <span class="tag">PID</span>
+              <span class="tag">Encoders</span>
+            </div>
 
-          <article class="card stagger">
-            <h3>GopherGPT</h3>
-            <p class="card-sub mono">AI Club at UMN · Agent Logic team · RAG</p>
-            <p>
-              A university-specific LLM agent built with the Agent Logic team,
-              using retrieval-augmented generation to ground responses in
-              University of Minnesota data for accurate, real-time student
-              assistance.
-            </p>
-          </article>
-
-          <article class="card stagger">
-            <h3>Gyroscope-Based Fitness Tracker</h3>
-            <p class="card-sub mono">Python · Signal processing · ML</p>
-            <p>
-              Python pipelines that process and visualize accelerometer and
-              gyroscope data from barbell exercises, with a machine learning model
-              that classifies exercises and counts repetitions from motion
-              signatures.
-            </p>
-          </article>
-        </div>
-
-        <p class="more-link stagger">
-          More on <a href="https://github.com/akihitoshinozaki" target="_blank" rel="noopener">GitHub</a>.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============ EDUCATION & SKILLS ============ -->
-    <section class="section" id="education">
-      <div class="section-marker" aria-hidden="true"><span class="tategaki">学歴</span></div>
-      <div class="section-body">
-        <h2>Education &amp; Skills</h2>
-
-        <article class="entry stagger">
-          <p class="entry-date mono">Expected May 2029</p>
-          <div class="entry-main">
-            <h3>University of Minnesota — Twin Cities</h3>
-            <p class="entry-org">B.S. Computer Science</p>
-            <p>
-              Coursework includes algorithms &amp; data structures, discrete
-              structures, and linear algebra &amp; differential equations.
-              Recipient of the JAA Ambassador Shinichi Nishimiya Scholarship.
-            </p>
+            <details>
+              <summary>Engineering notes</summary>
+              <p>
+                <strong>My contribution.</strong>
+                Motor-velocity command implementation and
+                encoder-feedback handling as a controls team member.
+              </p>
+              <p>
+                <strong>Engineering focus.</strong>
+                Consistent velocity units, control-loop timing,
+                and command start/stop behavior.
+              </p>
+              <p>
+                <strong>Status.</strong>
+                Implementation in progress. Hardware testing
+                and performance measurements are next steps.
+              </p>
+            </details>
           </div>
         </article>
 
-        <div class="skills">
-          <div class="skill-row stagger">
-            <p class="skill-label mono">Languages &amp; tools</p>
-            <p>Python (PyTorch, Pandas, NumPy) · Java · C++ · JavaScript · Git</p>
+        <!-- PROJECT 3 -->
+        <article class="project">
+          <div class="project-visual">
+            <div class="visual-top">
+              <span class="project-number">PROJECT / 03</span>
+              <span class="status">Research</span>
+            </div>
+
+            <div
+              class="flow"
+              aria-label="Signals to mathematical model to optimization"
+            >
+              <span>Signal</span>
+              <span class="arrow" aria-hidden="true">→</span>
+              <span>Model</span>
+              <span class="arrow" aria-hidden="true">→</span>
+              <span>Optimize</span>
+            </div>
+
+            <p class="visual-caption">
+              Signal-analysis workflow
+            </p>
           </div>
-          <div class="skill-row stagger">
-            <p class="skill-label mono">Hardware &amp; systems</p>
-            <p>ESP32 · Arduino · mmWave radar pipelines · Docker · FastAPI</p>
+
+          <div class="project-body">
+            <p class="project-type">
+              POSM Photonics · Undergraduate research
+            </p>
+
+            <h3>Photonics optimization</h3>
+
+            <p class="project-description">
+              Developing Python optimization and signal-analysis
+              tools for multichannel rubidium spectroscopy.
+            </p>
+
+            <div class="tags" aria-label="Technologies">
+              <span class="tag">Python</span>
+              <span class="tag">NumPy / SciPy</span>
+              <span class="tag">CVXPY</span>
+              <span class="tag">OSQP</span>
+            </div>
+
+            <details>
+              <summary>Engineering notes</summary>
+              <p>
+                <strong>My contribution.</strong>
+                Synthetic-data validation, Pareto trade-off
+                analysis, and SVD-based diagnostics.
+              </p>
+              <p>
+                <strong>Engineering focus.</strong>
+                Examine signal quality and numerical conditioning
+                when comparing optimization choices.
+              </p>
+              <p>
+                <strong>Scope.</strong>
+                Computational tooling and analysis within a
+                larger team research project.
+              </p>
+            </details>
           </div>
-          <div class="skill-row stagger">
-            <p class="skill-label mono">Spoken languages</p>
-            <p>Japanese (native) · English (fluent)</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section
+      id="experience"
+      class="section experience-section"
+      aria-labelledby="experience-title"
+    >
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">02 / Experience</p>
+          <h2 id="experience-title">
+            Building beyond the classroom.
+          </h2>
+        </div>
+      </div>
+
+      <article class="experience">
+        <div class="experience-meta">
+          <strong>Mar – Jun 2026</strong>
+          Minneapolis, Minnesota
+        </div>
+
+        <div>
+          <h3>Software Engineering Intern</h3>
+          <p class="organization">Ambient Intelligence Inc.</p>
+          <p class="experience-description">
+            Contributed to a TI IWR6843 radar people-tracking and
+            fall-detection system. Developed multithreaded Python
+            serial ingestion and JSON logging, and deployed the
+            processing pipeline to a Raspberry Pi with automatic
+            startup.
+          </p>
+
+          <div class="tags" aria-label="Technologies">
+            <span class="tag">Python</span>
+            <span class="tag">mmWave radar</span>
+            <span class="tag">Raspberry Pi</span>
+            <span class="tag">Data pipelines</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="experience">
+        <div class="experience-meta">
+          <strong>May – Jun 2025</strong>
+          Westchester, New York
+        </div>
+
+        <div>
+          <h3>Software Intern</h3>
+          <p class="organization">Miracom Computer Corp.</p>
+          <p class="experience-description">
+            Built an ESP32 web server with an HTML/CSS interface
+            for controlling lights over local Wi-Fi, connecting
+            a browser-based interface to embedded hardware.
+          </p>
+
+          <div class="tags" aria-label="Technologies">
+            <span class="tag">ESP32</span>
+            <span class="tag">Arduino</span>
+            <span class="tag">HTML / CSS</span>
+            <span class="tag">HTTP</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ABOUT AND SKILLS -->
+    <section
+      id="about"
+      class="section about-section"
+      aria-labelledby="about-title"
+    >
+      <div class="about-grid">
+        <div>
+          <p class="eyebrow">03 / About</p>
+
+          <h2 id="about-title">
+            Interested in how<br>it all fits together.
+          </h2>
+
+          <p class="about-copy">
+            My interests sit at the intersection of robotics,
+            healthcare, and reliable software. I'm especially
+            drawn to surgical robotics and the integration of
+            perception, control, and embedded systems.
+          </p>
+
+          <div class="education">
+            <strong>University of Minnesota, Twin Cities</strong>
+            <p>
+              B.S. Computer Science · Minors: Mathematics &amp;
+              Computational Biology
+            </p>
+            <p>Expected graduation: Spring 2029</p>
+          </div>
+        </div>
+
+        <div class="toolbox">
+          <h3>Tools I work with</h3>
+
+          <dl>
+            <div class="tool-row">
+              <dt>Languages</dt>
+              <dd>Python, C++, C, OCaml</dd>
+            </div>
+
+            <div class="tool-row">
+              <dt>Vision &amp; data</dt>
+              <dd>OpenCV, NumPy, SciPy, YOLO, ByteTrack</dd>
+            </div>
+
+            <div class="tool-row">
+              <dt>Optimization</dt>
+              <dd>CVXPY, OSQP, signal analysis</dd>
+            </div>
+
+            <div class="tool-row">
+              <dt>Hardware</dt>
+              <dd>
+                Raspberry Pi, ESP32, radar sensors, motor encoders
+              </dd>
+            </div>
+          </dl>
+
+          <div class="leadership">
+            <strong>Vice President · AI Innovators Society</strong>
+            Supporting a student community focused on AI
+            technical learning, leadership, and practical
+            applications.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ CONTACT ============ -->
-    <section class="section" id="contact">
-      <div class="section-marker" aria-hidden="true"><span class="tategaki">連絡</span></div>
-      <div class="section-body">
-        <h2>Contact</h2>
-        <p class="stagger">
-          I'm always glad to talk about medical AI, research, or internship
-          opportunities.
+    <!-- CONTACT
+         This email is public when the page is published.
+         Edit or remove it as needed.
+         Add only project materials you are authorized to share.
+         No analytics, external fonts, tracking scripts,
+         or paid services are used. -->
+    <section
+      id="contact"
+      class="contact"
+      aria-labelledby="contact-title"
+    >
+      <div>
+        <p class="eyebrow">04 / Get in touch</p>
+        <h2 id="contact-title">Let's talk engineering.</h2>
+        <p>
+          Interested in robotics, healthcare technology,
+          or a project here? I'd be glad to connect.
         </p>
-        <ul class="contact-list">
-          <li class="stagger"><span class="mono">Email</span><a href="mailto:akihitoshinoz@gmail.com">akihitoshinoz@gmail.com</a></li>
-          <li class="stagger"><span class="mono">LinkedIn</span><a href="https://www.linkedin.com/in/akihito-shinozaki-631804336" target="_blank" rel="noopener">akihito-shinozaki</a></li>
-          <li class="stagger"><span class="mono">GitHub</span><a href="https://github.com/akihitoshinozaki" target="_blank" rel="noopener">akihitoshinozaki</a></li>
-        </ul>
       </div>
+
+      <a
+        class="contact-link"
+        href="mailto:akihitoshinoz@gmail.com"
+      >
+        akihitoshinoz@gmail.com
+        <span aria-hidden="true">↗</span>
+      </a>
     </section>
 
   </main>
 
-  <footer class="footer">
-    <p>© 2026 Akihito Shinozaki <span class="footer-kanji" aria-hidden="true">篠崎暁人</span></p>
-    <a class="back-top mono" href="#top">Back to top ↑</a>
+  <footer class="wrap">
+    <span>© 2026 Akihito Shinozaki</span>
+    <span>Robotics · Computer vision · Healthcare technology</span>
+    <a href="#main">Back to top ↑</a>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
